@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pending Approval Notification</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Raleway', sans-serif; width: 500px; margin: 10px auto; border: 1px solid #eee; border-radius: 10px;">
+<style>
+    .Approved {
+        color: green;
+    }
+
+    .Rejected {
+        color: red;
+    }
+ </style>
+    <div class="email-content" style="width: 500px; margin: 0 auto; ">
+
+
+        <header style=" margin: 0 auto;">
+        </header>
+
+        <main style="margin: 20px; padding: 20px 40px; background: #fafafc;">
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">Hi {{ReceiverName}} </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+                Please note that your  <strong>{{TransmissionAgent}}</strong>  request  for transaction initiated on TSA Portal  has been <span class="{{ApprovedRejected}}"> {{ApprovedRejected}} </span> .
+            </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+                Amount:<span>&#8358;</span>  {{Amount}}
+            </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+             Unique Reference: {{UniqueRef}}
+            </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+                {{ApprovedRejected}} By: {{ApprovedRejectedBy}}
+            </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+                <a href="{{TSAURLLink}}">Click here to access TSA Portal</a>
+            </p>
+            <p style="margin: 20px 0; line-height: 1.5; font-size: 15px; padding: 0 40px;">
+            </p>
+
+        </main>
+    </div>
+
+</body>
+</html>
