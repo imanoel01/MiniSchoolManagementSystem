@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagementSystem.Application.Concrete;
 using SchoolManagementSystem.Application.ViewModel;
 using SchoolManagementSystem.Common.Models;
@@ -20,7 +20,11 @@ namespace SchoolManagementSystem.Controllers
         }
 
 
-        
+        /// <summary>
+        /// Get Student By Id
+        /// </summary>
+        /// <param name="studentId"></param>
+        /// <returns></returns>
         [HttpGet("{studentId}")]
         [ProducesResponseType(typeof(ResponseModel<StudentReadDto>), 200)]
         [ProducesResponseType(typeof(ResponseModel), 400)]
@@ -32,6 +36,10 @@ namespace SchoolManagementSystem.Controllers
             return NotFound(request);
         }
 
+        /// <summary>
+        /// Get All Students
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(ResponseModel<List<StudentReadDto>>), 200)]
         [ProducesResponseType(typeof(ResponseModel), 400)]
@@ -41,6 +49,11 @@ namespace SchoolManagementSystem.Controllers
         }
 
 
+        /// <summary>
+        /// Create Student
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("createStudent")]
 
@@ -54,7 +67,11 @@ namespace SchoolManagementSystem.Controllers
             return BadRequest(request);
         }
 
-
+        /// <summary>
+        /// Update Student
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("updateStudent")]
         [ProducesResponseType(typeof(ResponseModel<StudentReadDto>), 200)]
