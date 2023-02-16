@@ -10,84 +10,60 @@ namespace SchoolManagementSystem.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     [ApiController]
-    public class StudentsController : ControllerBase
+    public class CoursesController : ControllerBase
     {
-        private readonly IStudentService _studentService;
+        private readonly ICourseService _courseService;
 
-        public StudentsController(IStudentService studentService)
+        public CoursesController(ICourseService courseService)
         {
-            _studentService = studentService;
+            _courseService = courseService;
         }
-
-
         /// <summary>
-        /// Get Student By Id
+        /// Get Course By Id
         /// </summary>
-        /// <param name="studentId"></param>
+        /// <param name="courseId"></param>
         /// <returns></returns>
-        [HttpGet("{studentId}")]
-        [ProducesResponseType(typeof(ResponseModel<StudentReadDto>), 200)]
+        [HttpGet("{courseId}")]
+        [ProducesResponseType(typeof(ResponseModel<CourseReadDto>), 200)]
         [ProducesResponseType(typeof(ResponseModel), 400)]
-        public async Task<IActionResult> Get(string studentId)
+        public async Task<IActionResult> GetCourseById(string courseId)
         {
-            var request = await _studentService.GetStudentById(studentId);
+            var request = await _courseService.GetCourseById(courseId);
             if (request.IsSuccessful)
                 return Ok(request);
             return NotFound(request);
         }
 
         /// <summary>
-        /// Get All Students
+        /// Get All Courses
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [ProducesResponseType(typeof(ResponseModel<List<StudentReadDto>>), 200)]
+        [ProducesResponseType(typeof(ResponseModel<List<CourseReadDto>>), 200)]
         [ProducesResponseType(typeof(ResponseModel), 400)]
-        public async Task<IActionResult> GetAllStudents()
+        public async Task<IActionResult> GetAllCourses()
         {
-            return Ok(await _studentService.GetAllStudents());
+            return Ok(await _courseService.GetAllCourses());
         }
 
 
         /// <summary>
-        /// Create Student
+        /// Create Course
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("createStudent")]
+        [Route("createcourse")]
 
-        [ProducesResponseType(typeof(ResponseModel<StudentReadDto>), 201)]
+        [ProducesResponseType(typeof(ResponseModel<CourseReadDto>), 201)]
         [ProducesResponseType(typeof(ResponseModel), 400)]
-        public async Task<IActionResult> CreateStudent([FromBody] StudentCreateDto model)
+        public async Task<IActionResult> CreateStudent([FromBody] CourseCreateDto model)
         {
-            var request = await _studentService.CreateStudent(model);
+            var request = await _courseService.CreateCourse(model);
             if (request.IsSuccessful)
                 return Created(request.Data.Id, request);
             return BadRequest(request);
         }
 
-        /// <summary>
-        /// Update Student
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("updateStudent")]
-        [ProducesResponseType(typeof(ResponseModel<StudentReadDto>), 200)]
-        [ProducesResponseType(typeof(ResponseModel), 400)]
-        public async Task<IActionResult> UpdateStudent([FromBody] StudentUpdateDto model)
-        {
-            var request = await _studentService.UpdateStudent(model);
-            if (request.IsSuccessful)
-                return Ok(request);
-            return BadRequest(request);
-        }
-
-        // DELETE api/<StudentsController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
