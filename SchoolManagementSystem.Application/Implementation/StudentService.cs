@@ -64,7 +64,7 @@ namespace SchoolManagementSystem.Application.Implementation
 
                 }
 
-                var emailPhoneExisit = await _studentRepo.AllAsNoTracking().SingleOrDefaultAsync(x => x.Id != request.Id && x.Email.ToUpper() == request.Email.ToUpper() || x.Phone == request.Phone);
+                var emailPhoneExisit =  await _studentRepo.AllAsNoTracking().SingleOrDefaultAsync(x => x.Id != request.Id && (x.Email.ToUpper() == request.Email.ToUpper() || x.Phone == request.Phone));
 
                 if (emailPhoneExisit != null)
                 {
